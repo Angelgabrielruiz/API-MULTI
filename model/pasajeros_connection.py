@@ -5,7 +5,6 @@ class PasajerosConnection:
 
     def __init__(self):
         try:
-            # Establece la conexión a la base de datos
             self.conn = psycopg.connect("dbname=postgres user=multidiciplinario password=multi404 host=3.225.29.67 port=5432")
         except psycopg.OperationalError as err:
             print(f"Error al conectar a la base de datos: {err}")
@@ -34,8 +33,8 @@ class PasajerosConnection:
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
-                    INSERT INTO "pasajeros" (name, origen, destino, fechadeviaje, colectivo_id, chofer_id) 
-                    VALUES (%(name)s, %(origen)s, %(destino)s, %(fechadeviaje)s, %(colectivo_id)s, %(chofer_id)s)
+                    INSERT INTO "pasajeros" (name, origen, destino, colectivo_id, chofer_id) 
+                    VALUES (%(name)s, %(origen)s, %(destino)s, %(colectivo_id)s, %(chofer_id)s)
                 """, data)
             self.conn.commit()
         except Exception as e:
@@ -57,7 +56,7 @@ class PasajerosConnection:
                 cur.execute("""
                     UPDATE "pasajeros" 
                     SET name = %(name)s, origen = %(origen)s, destino = %(destino)s, 
-                        fechadeviaje = %(fechadeviaje)s, colectivo_id = %(colectivo_id)s, chofer_id = %(chofer_id)s 
+                         colectivo_id = %(colectivo_id)s, chofer_id = %(chofer_id)s 
                     WHERE id = %(id)s
                 """, data)
             self.conn.commit()

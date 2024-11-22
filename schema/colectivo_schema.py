@@ -6,3 +6,5 @@ class ColectivoSchema (BaseModel):
     asientos: int
     ubicacion: str
     num_serie: int
+    fecha : str
+    horario : str

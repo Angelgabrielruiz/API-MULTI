@@ -14,6 +14,8 @@ def get_all():
         dictionary["asientos"] = data[1]
         dictionary["ubicacion"] = data[2]
         dictionary["num_ser"] = data[3]
+        dictionary["fecha"] = data[4]
+        dictionary["horario"] = data[5]
         items.append(dictionary)
     return items
 
@@ -22,25 +24,27 @@ def get_all():
 def get_one(id: str):
     dictionary = {}
     data = conn.read_one(id)
-    if data:  # Check if the data exists
+    if data:  
         dictionary["id"] = data[0]
         dictionary["asientos"] = data[1]
         dictionary["ubicacion"] = data[2]
         dictionary["num_ser"] = data[3]
+        dictionary["fecha"] = data[4]
+        dictionary["horario"] = data[5]
         return dictionary
     return {"error": "Colectivo no encontrado"}
 
 @router.post("/api/colectivo/post")
 def insert(colectivo_data: ColectivoSchema):
     data = colectivo_data.dict()
-    data.pop("id")  # Remove 'id' from the input data, as it's auto-generated
+    data.pop("id") 
     conn.write(data)
     return {"message": "Colectivo agregado exitosamente"}
 
 @router.put("/api/colectivo/update/{id}")
 def update(colectivo_data: ColectivoSchema, id: str):
     data = colectivo_data.dict()
-    data["id"] = id  # Add the 'id' field for the update query
+    data["id"] = id  
     conn.update(data)
     return {"message": "Colectivo actualizado exitosamente"}
 

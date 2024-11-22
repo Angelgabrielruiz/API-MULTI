@@ -6,7 +6,7 @@ class ColectivoConnection:
 
     def __init__(self):
         try:
-            # Establece la conexión a la base de datos
+            
             self.conn = psycopg.connect("dbname=postgres user=multidiciplinario password=multi404 host=3.225.29.67 port=5432")
         except psycopg.OperationalError as err:
             print(f"Error al conectar a la base de datos: {err}")
@@ -34,8 +34,8 @@ class ColectivoConnection:
     def write(self, data: dict):
         try:
             with self.conn.cursor() as cur:
-                cur.execute("""INSERT INTO "colectivo" (asientos, ubicacion, num_serie) 
-                               VALUES (%(asientos)s, %(ubicacion)s, %(num_serie)s)""", data)
+                cur.execute("""INSERT INTO "colectivo" (asientos, ubicacion, num_serie, fecha, horario) 
+                               VALUES (%(asientos)s, %(ubicacion)s, %(num_serie)s, %(fecha)s, %(horario)s)""", data)
             self.conn.commit()
         except Exception as e:
             print(f"Error al insertar un colectivo: {e}")
@@ -54,7 +54,7 @@ class ColectivoConnection:
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""UPDATE "colectivo" 
-                               SET asientos = %(asientos)s, ubicacion = %(ubicacion)s, num_serie = %(num_serie)s 
+                               SET asientos = %(asientos)s, ubicacion = %(ubicacion)s, num_serie = %(num_serie)s, fecha = %(fecha)s, horario = %(horario)s
                                WHERE id = %(id)s""", data)
             self.conn.commit()
         except Exception as e:

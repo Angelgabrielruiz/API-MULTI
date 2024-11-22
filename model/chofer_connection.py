@@ -33,7 +33,7 @@ class ChoferConnection:
     def write(self, data):
         try:
             with self.conn.cursor() as cur:
-                cur.execute("""INSERT INTO "chofer" (nombre, numero_telefono) VALUES (%(nombre)s, %(numero_telefono)s)""", data)
+                cur.execute("""INSERT INTO "chofer" (nombre) VALUES (%(nombre)s)""", data)
             self.conn.commit()
         except Exception as e:
             print(f"Error al insertar un chofer: {e}")
@@ -51,7 +51,7 @@ class ChoferConnection:
     def update(self, data):
         try:
             with self.conn.cursor() as cur:
-                cur.execute("""UPDATE "chofer" SET nombre = %(nombre)s, numero_telefono = %(numero_telefono)s WHERE id = %(id)s""", data)
+                cur.execute("""UPDATE "chofer" SET nombre = %(nombre)s WHERE id = %(id)s""", data)
             self.conn.commit()
         except Exception as e:
             print(f"Error al actualizar un chofer: {e}")

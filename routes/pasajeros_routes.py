@@ -15,9 +15,8 @@ def get_all():
         dictionary["name"] = data[1]
         dictionary["origen"] = data[2]
         dictionary["destino"] = data[3]
-        dictionary["fechadeviaje"] = data[4]
-        dictionary["colectivo_id"] = data[5]
-        dictionary["chofer_id"] = data[6]
+        dictionary["colectivo_id"] = data[4]
+        dictionary["chofer_id"] = data[5]
         items.append(dictionary)
     return items
 
@@ -30,9 +29,8 @@ def get_one(id: str):
     dictionary["name"] = data[1]
     dictionary["origen"] = data[2]
     dictionary["destino"] = data[3]
-    dictionary["fechadeviaje"] = data[4]
-    dictionary["colectivo_id"] = data[5]
-    dictionary["chofer_id"] = data[6]
+    dictionary["colectivo_id"] = data[4]
+    dictionary["chofer_id"] = data[5]
     return dictionary
 
 

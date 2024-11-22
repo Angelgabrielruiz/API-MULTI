@@ -1,6 +1,9 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class ChoferSchema(BaseModel):
+class TarjetaSchema(BaseModel):
     id: Optional[int]
     nombre: str
+    num_tarjeta: int
+    fecha_expiracion: str
+    cvc: int

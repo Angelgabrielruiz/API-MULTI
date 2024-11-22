@@ -7,6 +7,5 @@ class PasajerosSchema(BaseModel):
     name: str
     origen: str
     destino: str
-    fechadeviaje: date
     colectivo_id: int
     chofer_id: int

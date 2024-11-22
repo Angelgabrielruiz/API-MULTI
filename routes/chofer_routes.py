@@ -13,7 +13,6 @@ def get_all():
         dictionary = {}
         dictionary["id"] = data[0]
         dictionary["nombre"] = data[1]
-        dictionary["numero_telefono"] = data[2]
         items.append(dictionary)
     return items
 
@@ -24,7 +23,6 @@ def get_one(id: str):
     data = conn.read_one(id)
     dictionary["id"] = data[0]
     dictionary["nombre"] = data[1]
-    dictionary["numero_telefono"] = data[2]
     return dictionary
 
 

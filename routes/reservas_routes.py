@@ -17,6 +17,8 @@ def get_all():
         dictionary["forma_pago"] = data[3]
         dictionary["monto"] = data[4]
         dictionary["pasajero_id"] = data[5]
+        dictionary["cantidad"] = data[6]
+        
         items.append(dictionary)
     return items
 
@@ -31,6 +33,7 @@ def get_one(id: str):
     dictionary["forma_pago"] = data[3]
     dictionary["monto"] = data[4]
     dictionary["pasajero_id"] = data[5]
+    dictionary["cantidad"] = data[6]
     return dictionary
 
 

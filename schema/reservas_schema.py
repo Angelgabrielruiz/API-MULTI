@@ -9,3 +9,4 @@ class ReservasSchema(BaseModel):
     forma_pago: str
     monto: int
     pasajero_id: int
+    cantidad : int
