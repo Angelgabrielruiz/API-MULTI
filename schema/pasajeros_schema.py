@@ -3,7 +3,7 @@ from typing import Optional
 from datetime import date
 
 class PasajerosSchema(BaseModel):
-    id: Optional[int]
+    id: Optional[int] = None
     name: str
     origen: str
     destino: str

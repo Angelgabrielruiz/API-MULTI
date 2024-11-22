@@ -3,7 +3,7 @@ from typing import Optional
 from datetime import date
 
 class ReservasSchema(BaseModel):
-    id: Optional[int]
+    id: Optional[int] = None
     estado: str
     fecha_reserva: date
     forma_pago: str
