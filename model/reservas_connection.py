@@ -34,8 +34,8 @@ class ReservasConnection:
         try:
             with self.conn.cursor() as cur:
                 cur.execute("""
-                    INSERT INTO "reservas" (estado, fecha_reserva, forma_pago, monto, pasajero_id, cantidad) 
-                    VALUES (%(estado)s, %(fecha_reserva)s, %(forma_pago)s, %(monto)s, %(pasajero_id)s, %(cantidad)s)
+                    INSERT INTO "reservas" (fecha_reserva, forma_pago, monto, pasajero_id, cantidad) 
+                    VALUES (%(fecha_reserva)s, %(forma_pago)s, %(monto)s, %(pasajero_id)s, %(cantidad)s)
                 """, data)
             self.conn.commit()
         except Exception as e:
@@ -56,7 +56,7 @@ class ReservasConnection:
             with self.conn.cursor() as cur:
                 cur.execute("""
                     UPDATE "reservas" 
-                    SET estado = %(estado)s, fecha_reserva = %(fecha_reserva)s, forma_pago = %(forma_pago)s, monto = %(monto)s, pasajero_id = %(pasajero_id)s, cantidad = %(cantidad)s 
+                    SET fecha_reserva = %(fecha_reserva)s, forma_pago = %(forma_pago)s, monto = %(monto)s, pasajero_id = %(pasajero_id)s, cantidad = %(cantidad)s 
                     WHERE id = %(id)s
                 """, data)
             self.conn.commit()

@@ -12,12 +12,11 @@ def get_all():
     for data in conn.read_all():
         dictionary = {}
         dictionary["id"] = data[0]
-        dictionary["estado"] = data[1]
-        dictionary["fecha_reserva"] = data[2]
-        dictionary["forma_pago"] = data[3]
-        dictionary["monto"] = data[4]
-        dictionary["pasajero_id"] = data[5]
-        dictionary["cantidad"] = data[6]
+        dictionary["fecha_reserva"] = data[1]
+        dictionary["forma_pago"] = data[2]
+        dictionary["monto"] = data[3]
+        dictionary["pasajero_id"] = data[4]
+        dictionary["cantidad"] = data[5]
         
         items.append(dictionary)
     return items
@@ -28,12 +27,11 @@ def get_one(id: str):
     dictionary = {}
     data = conn.read_one(id)
     dictionary["id"] = data[0]
-    dictionary["estado"] = data[1]
-    dictionary["fecha_reserva"] = data[2]
-    dictionary["forma_pago"] = data[3]
-    dictionary["monto"] = data[4]
-    dictionary["pasajero_id"] = data[5]
-    dictionary["cantidad"] = data[6]
+    dictionary["fecha_reserva"] = data[1]
+    dictionary["forma_pago"] = data[2]
+    dictionary["monto"] = data[3]
+    dictionary["pasajero_id"] = data[4]
+    dictionary["cantidad"] = data[5]
     return dictionary
 
 

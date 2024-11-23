@@ -4,7 +4,6 @@ from datetime import date
 
 class ReservasSchema(BaseModel):
     id: Optional[int] = None
-    estado: str
     fecha_reserva: date
     forma_pago: str
     monto: int
