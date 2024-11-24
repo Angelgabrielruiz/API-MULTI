@@ -1,3 +1,4 @@
+from fastapi import HTTPException
 import psycopg
 
 class PasajerosConnection:
@@ -28,7 +29,7 @@ class PasajerosConnection:
         except Exception as e:
             print(f"Error al leer un pasajero: {e}")
             return None
-
+        
     def write(self, data):
         try:
             with self.conn.cursor() as cur:
@@ -63,7 +64,18 @@ class PasajerosConnection:
         except Exception as e:
             print(f"Error al actualizar un pasajero: {e}")
             self.conn.rollback()
+            
+    def read_last(self):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""SELECT * FROM "pasajeros" ORDER BY id DESC LIMIT 1""")
+                data = cur.fetchone()
+            return data
+        except Exception as e:
+            print(f"Error al leer el último pasajero: {e}")
+            return None
 
+    
     def close(self):
         if self.conn:
             self.conn.close()

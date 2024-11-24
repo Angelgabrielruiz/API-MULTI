@@ -4,8 +4,7 @@ class ReservasConnection:
     conn = None
 
     def __init__(self):
-        try:
-            # Establece la conexión a la base de datos
+        try: 
             self.conn = psycopg.connect("dbname=postgres user=multidiciplinario password=multi404 host=3.225.29.67 port=5432")
         except psycopg.OperationalError as err:
             print(f"Error al conectar a la base de datos: {err}")

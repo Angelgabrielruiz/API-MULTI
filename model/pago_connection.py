@@ -63,6 +63,9 @@ class PagoConnection:
         except Exception as e:
             print(f"Error al actualizar un pago: {e}")
             self.conn.rollback()
+            
+
+
 
     def close(self):
         if self.conn:

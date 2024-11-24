@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from model.pasajeros_connection import PasajerosConnection
 from schema.pasajeros_schema import PasajerosSchema
 
@@ -21,7 +21,7 @@ def get_all():
     return items
 
 
-@router.get("/api/pasajeros/{id}")
+@router.get("/api/pasajeros/one/{id}")
 def get_one(id: str):
     dictionary = {}
     data = conn.read_one(id)
@@ -52,3 +52,16 @@ def update(pasajero_data: PasajerosSchema, id: str):
 @router.delete("/api/pasajeros/delete/{id}")
 def delete(id: str):
     conn.delete(id)
+
+
+@router.get("/api/pasajeros/last")
+def get_last():
+    dictionary = {}
+    data = conn.read_last()
+    dictionary["id"] = data[0]
+    dictionary["name"] = data[1]
+    dictionary["origen"] = data[2]
+    dictionary["destino"] = data[3]
+    dictionary["colectivo_id"] = data[4]
+    dictionary["chofer_id"] = data[5]
+    return dictionary
