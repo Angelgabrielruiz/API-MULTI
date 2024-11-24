@@ -19,11 +19,13 @@ users = {
 }
 
 def encode_token(payload: dict) -> str:
-    token = jwt
-    return "pruebita"
+    token = jwt.encode(payload, "secreto-amor", algorithm="HS256")
+    return token
 
 def decode_token(token: Annotated[str, Depends(oauth2_schema)]) -> dict:
-    return users.get("chame")
+    data = jwt.decode(token, "secreto-amor", algorithms=["HS256"])
+    user = users.get(data["username"])
+    return user
 
 app.add_middleware(
     CORSMiddleware,
@@ -44,7 +46,7 @@ app.include_router(tarjeta_router)
 @app.post("/token")
 def root(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
     user = users.get(form_data.username)
-    if not user:
+    if not user or form_data.password != user ["password"]:
         raise HTTPException(status_code=400, detail="Incorrect Username")
     
     token = encode_token({"username": user["username"], "email": user["email"]})
@@ -52,5 +54,5 @@ def root(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
     return { "access_token":token }
 
 @app.get ("/users/profile")
-def profile(my_user: Annotated[dict, Depends(decode_token)]):
+def profile(my_user):
     return my_user
