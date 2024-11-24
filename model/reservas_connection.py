@@ -62,6 +62,16 @@ class ReservasConnection:
         except Exception as e:
             print(f"Error al actualizar una reserva: {e}")
             self.conn.rollback()
+            
+    def read_last(self):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""SELECT * FROM "reservas" ORDER BY id DESC LIMIT 1""")
+                data = cur.fetchone()
+            return data
+        except Exception as e:
+            print(f"Error al leer la última reserva: {e}")
+            return None
 
     def close(self):
         """Cierra la conexión de manera segura"""

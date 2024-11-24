@@ -22,7 +22,7 @@ def get_all():
     return items
 
 
-@router.get("/api/reservas/{id}")
+@router.get("/api/reservas/one/{id}")
 def get_one(id: str):
     dictionary = {}
     data = conn.read_one(id)
@@ -53,3 +53,16 @@ def update(reservas_data: ReservasSchema, id: str):
 @router.delete("/api/reservas/delete/{id}")
 def delete(id: str):
     conn.delete(id)
+    
+    
+@router.get("/api/reservas/last")
+def get_last():
+    dictionary = {}
+    data = conn.read_last()
+    dictionary["id"] = data[0]
+    dictionary["fecha_reserva"] = data[1]
+    dictionary["forma_pago"] = data[2]
+    dictionary["monto"] = data[3]
+    dictionary["pasajero_id"] = data[4]
+    dictionary["cantidad"] = data[5]
+    return dictionary
