@@ -45,6 +45,7 @@ def update(tarjeta_data: TarjetaSchema, id: str):
     data = tarjeta_data.dict()
     data["id"] = id
     conn.update(data)
+    return {"message": "tarjeta editada correctamente", "data": data}
 
 
 @router.delete("/api/tarjeta/delete/{id}")

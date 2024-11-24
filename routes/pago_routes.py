@@ -45,6 +45,7 @@ def update(pago_data: PagoSchema, id: str):
     data = pago_data.dict()
     data["id"] = id
     conn.update(data)
+    return {"message": "Pago editado correctamente", "data": data}
 
 
 @router.delete("/api/pago/delete/{id}")

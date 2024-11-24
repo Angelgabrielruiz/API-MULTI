@@ -49,7 +49,7 @@ def update(chofer_data: ChoferSchema, id: str, token: str = Depends(decode_token
     data = chofer_data.dict()
     data["id"] = id
     conn.update(data)
-    return {"message": "Chofer actualizado correctamente"}
+    return {"message": "chofer editado correctamente", "data": data}
 
 @router.delete("/api/chofer/delete/{id}")
 def delete(id: str, token: str = Depends(decode_token)):

@@ -47,6 +47,7 @@ def update(pasajero_data: PasajerosSchema, id: str):
     data = pasajero_data.dict()
     data["id"] = id
     conn.update(data)
+    return {"message": "Pasajero editado correctamente", "data": data}
 
 
 @router.delete("/api/pasajeros/delete/{id}")

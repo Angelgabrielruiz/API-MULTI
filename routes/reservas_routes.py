@@ -48,6 +48,8 @@ def update(reservas_data: ReservasSchema, id: str):
     data = reservas_data.dict()
     data["id"] = id
     conn.update(data)
+    return {"message": "reserva editada correctamente", "data": data}
+    
 
 
 @router.delete("/api/reservas/delete/{id}")
