@@ -40,6 +40,7 @@ def insert(reservas_data: ReservasSchema):
     data = reservas_data.dict()
     data.pop("id")
     conn.write(data)
+    return {"message": "reserva agregada correctamente", "data": data}
 
 
 @router.put("/api/reservas/update/{id}")

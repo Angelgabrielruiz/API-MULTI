@@ -39,6 +39,7 @@ def insert(pasajero_data: PasajerosSchema):
     data = pasajero_data.dict()
     data.pop("id")
     conn.write(data)
+    return {"message": "Pasajero agregado correctamente", "data": data}
 
 
 @router.put("/api/pasajeros/update/{id}")

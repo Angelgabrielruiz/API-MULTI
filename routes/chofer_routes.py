@@ -31,6 +31,7 @@ def insert(chofer_data: ChoferSchema):
     data = chofer_data.dict()
     data.pop("id")
     conn.write(data)
+    return {"message": "Chofer agregado correctamente", "data": data}
 
 
 @router.put("/api/chofer/update/{id}")

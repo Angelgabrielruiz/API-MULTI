@@ -37,6 +37,7 @@ def insert(pago_data: PagoSchema):
     data = pago_data.dict()
     data.pop("id")
     conn.write(data)
+    return {"message": "Pago agregado correctamente", "data": data}
 
 
 @router.put("/api/pago/update/{id}")

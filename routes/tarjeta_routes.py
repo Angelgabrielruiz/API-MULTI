@@ -37,6 +37,7 @@ def insert(tarjeta_data: TarjetaSchema):
     data = tarjeta_data.dict()
     data.pop("id")
     conn.write(data)
+    return {"message": "tarjeta agregada correctamente", "data": data}
 
 
 @router.put("/api/tarjeta/update/{id}")

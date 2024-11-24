@@ -39,7 +39,7 @@ def insert(colectivo_data: ColectivoSchema):
     data = colectivo_data.dict()
     data.pop("id") 
     conn.write(data)
-    return {"message": "Colectivo agregado exitosamente"}
+    return {"message": "Colectivo agregado correctamente", "data": data}
 
 @router.put("/api/colectivo/update/{id}")
 def update(colectivo_data: ColectivoSchema, id: str):
