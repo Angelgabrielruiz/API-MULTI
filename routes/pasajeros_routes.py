@@ -68,7 +68,7 @@ def get_last():
     return dictionary
 
 
-@router.get("/api/pasajeros/{id}/colectivo")
+@router.get("/api/pasajeros/colectivo/{id}")
 def get_colectivo(id: str):
     data = conn.get_colectivo_by_pasajero(id)
     if not data:
