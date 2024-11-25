@@ -54,10 +54,10 @@ def delete(id: str):
     return {"message": "Colectivo eliminado exitosamente"}
 
 @router.patch("/api/colectivo/asientos/{id}")
-def update_asientos(id: int, asientos: int):
+def update_asientos(id: int, payload: ColectivoSchema):
     data = conn.read_one(id)
     if not data:
         return {"error": "Colectivo no encontrado"}
     
-    conn.update_asientos(id, asientos)
-    return {"message": "Número de asientos actualizado correctamente", "id": id, "asientos": asientos}
+    conn.update_asientos(id, payload.asientos)
+    return {"message": "Número de asientos actualizado correctamente", "id": id, "asientos": payload.asientos}
