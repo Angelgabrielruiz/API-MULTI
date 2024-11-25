@@ -74,6 +74,21 @@ class PasajerosConnection:
         except Exception as e:
             print(f"Error al leer el último pasajero: {e}")
             return None
+        
+    def get_colectivo_by_pasajero(self, pasajero_id):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                    SELECT c.* 
+                    FROM "colectivo" c
+                    INNER JOIN "pasajeros" p ON c.id = p.colectivo_id
+                    WHERE p.id = %s
+                    """, (pasajero_id,))
+                data = cur.fetchone()
+            return data
+        except Exception as e:
+            print(f"Error al obtener el colectivo por pasajero: {e}")
+            return None
 
     
     def close(self):

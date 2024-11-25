@@ -6,7 +6,7 @@ from jose import jwt
 router = APIRouter()
 conn = ChoferConnection()
 
-SECRET_KEY = "secreto-amor"  # Asegúrate de que este coincide con el de main.py
+SECRET_KEY = "secreto-amor"  
 ALGORITHM = "HS256"
 
 # Función para decodificar el token

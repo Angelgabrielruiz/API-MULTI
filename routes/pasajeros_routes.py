@@ -66,3 +66,19 @@ def get_last():
     dictionary["colectivo_id"] = data[4]
     dictionary["chofer_id"] = data[5]
     return dictionary
+
+
+@router.get("/api/pasajeros/{id}/colectivo")
+def get_colectivo(id: str):
+    data = conn.get_colectivo_by_pasajero(id)
+    if not data:
+        raise HTTPException(status_code=404, detail="Colectivo no encontrado para este pasajero")
+    dictionary = {
+        "id": data[0],
+        "asientos": data[1],
+        "origen": data[2],
+        "destino": data[3],
+        "colectivo_id": data[4],
+        "chofer_id": data[5],
+    }
+    return dictionary
