@@ -55,3 +55,19 @@ def update(chofer_data: ChoferSchema, id: str, token: str = Depends(decode_token
 def delete(id: str, token: str = Depends(decode_token)):
     conn.delete(id)
     return {"message": "Chofer eliminado correctamente"}
+
+
+@router.get("/api/chofer/{id}/reservas")
+def get_reservas(id: str, token: str = Depends(decode_token)):
+    data = conn.get_reservas_by_chofer(id)
+    if not data:
+        raise HTTPException(status_code=404, detail="No se encontraron reservas para este chofer")
+    reservas = []
+    for reserva in data:
+        reservas.append({
+            "reserva_id": reserva[0],
+            "pasajero": reserva[1],
+            "origen": reserva[2],
+            "destino": reserva[3],
+        })
+    return reservas

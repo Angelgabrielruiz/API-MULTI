@@ -56,6 +56,23 @@ class ChoferConnection:
         except Exception as e:
             print(f"Error al actualizar un chofer: {e}")
             self.conn.rollback()
+            
+            
+    def get_reservas_by_chofer(self, chofer_id):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                SELECT r.id AS reserva_id, p.id AS pasajero_id, p.name AS pasajero, p.origen, p.destino
+                FROM "reservas" r
+                INNER JOIN "pasajeros" p ON r.pasajero_id = p.id
+                WHERE p.chofer_id = %s
+                """, (chofer_id,))
+                data = cur.fetchall()
+            return data
+        except Exception as e:
+            print(f"Error al obtener reservas por chofer: {e}")
+            return []
+
 
     def close(self):
         if self.conn:
