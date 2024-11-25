@@ -60,6 +60,19 @@ class ColectivoConnection:
         except Exception as e:
             print(f"Error al actualizar un colectivo: {e}")
             self.conn.rollback()
+            
+            
+    def update_asientos(self, id: int, asientos: int):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""UPDATE "colectivo" 
+                               SET asientos = %s 
+                               WHERE id = %s""", (asientos, id))
+                self.conn.commit()
+        except Exception as e:
+            print(f"Error al actualizar los asientos del colectivo: {e}")
+            self.conn.rollback()
+
 
     def close(self):
         if self.conn:
