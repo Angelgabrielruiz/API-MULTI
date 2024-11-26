@@ -72,6 +72,22 @@ class ColectivoConnection:
         except Exception as e:
             print(f"Error al actualizar los asientos del colectivo: {e}")
             self.conn.rollback()
+            
+    
+    def get_pasajeros_by_colectivo(self, colectivo_id):
+        try:
+            with self.conn.cursor() as cur:
+                cur.execute("""
+                SELECT id, name, origen, destino
+                FROM "pasajeros"
+                WHERE colectivo_id = %s
+                """, (colectivo_id,))
+                data = cur.fetchall()
+            return data
+        except Exception as e:
+            print(f"Error al obtener pasajeros por colectivo: {e}")
+            return []
+
 
 
     def close(self):

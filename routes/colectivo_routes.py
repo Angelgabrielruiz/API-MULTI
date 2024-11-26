@@ -61,3 +61,16 @@ def update_asientos(id: int, payload: ColectivoSchema):
     
     conn.update_asientos(id, payload.asientos)
     return {"message": "Número de asientos actualizado correctamente", "id": id, "asientos": payload.asientos}
+
+@router.get("/api/colectivo/pasajeros/{id}")
+def get_pasajeros_by_colectivo(id: str):
+    data = conn.get_pasajeros_by_colectivo(id)
+    pasajeros = []
+    for pasajero in data:
+        pasajeros.append({
+            "id": pasajero[0],
+            "name": pasajero[1],
+            "origen": pasajero[2],
+            "destino": pasajero[3],
+        })
+    return pasajeros
